@@ -37,7 +37,10 @@ Dexter takes complex financial questions and turns them into clear, step-by-step
 
 - [Bun](https://bun.com) runtime (v1.0 or higher)
 - OpenAI API key (get [here](https://platform.openai.com/api-keys))
-- Financial Datasets API key (get [here](https://financialdatasets.ai))
+- Financial Datasets API key (get [here](https://financialdatasets.ai)) 
+
+	- (Yahoo finance if it doesn't exist, credit to: https://github.com/king007pin/dexter)
+
 - Exa API key (get [here](https://exa.ai)) - optional, for web search
 
 #### Installing Bun
