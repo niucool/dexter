@@ -1,5 +1,5 @@
 import { StructuredToolInterface } from '@langchain/core/tools';
-import { createGetFinancials, createGetMarketData, createReadFilings, createScreenStocks } from './finance/index.js';
+import { createGetFinancials, createGetMarketData, createReadFilings, createScreenStocks, yahooQuoteTool, YAHOO_QUOTE_DESCRIPTION, yahooHistoricalTool, YAHOO_HISTORICAL_DESCRIPTION } from './finance/index.js';
 import { exaSearch, perplexitySearch, tavilySearch, WEB_SEARCH_DESCRIPTION, xSearchTool, X_SEARCH_DESCRIPTION } from './search/index.js';
 import { skillTool, SKILL_TOOL_DESCRIPTION } from './skill.js';
 import { webFetchTool, WEB_FETCH_DESCRIPTION } from './fetch/web-fetch.js';
@@ -188,6 +188,22 @@ export function getToolRegistry(model: string): RegisteredTool[] {
       concurrencySafe: false,
     });
   }
+
+  // Yahoo Finance tools — no API key required
+  tools.push({
+    name: 'yahoo_quote',
+    tool: yahooQuoteTool,
+    description: YAHOO_QUOTE_DESCRIPTION,
+    compactDescription: 'Real-time stock quote with price, market cap, P/E, EPS, and fundamentals from Yahoo Finance.',
+    concurrencySafe: true,
+  });
+  tools.push({
+    name: 'yahoo_historical',
+    tool: yahooHistoricalTool,
+    description: YAHOO_HISTORICAL_DESCRIPTION,
+    compactDescription: 'Historical OHLCV price data from Yahoo Finance over a time period.',
+    concurrencySafe: true,
+  });
 
   return tools;
 }
